@@ -15,11 +15,11 @@ version '0.10'
 
 foxloader {
     // forceReload = true
-    modId = "kolorful"
-    modName = "kolorful"
+    modId = "kinkit"
+    modName = "kinkit"
     modVersion = project.version
     modDesc = "more \"kolors\"!!!"
-    clientMod = "kn.jktech.kolorful.kolor"
+    clientMod = "kn.jktech.kinkit.kit"
     // Development tools don't like that both client and server define
     // the same classes, so uncomment to disable the side inclusion.
     // includeClient = false

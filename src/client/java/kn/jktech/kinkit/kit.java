@@ -9,6 +9,7 @@ import engine.obj.OBJLoader;
 import engine.obj.Obj;
 import net.minecraft.src.client.renderer.entity.Render;
 import net.minecraft.src.game.block.Block;
+import net.minecraft.src.game.block.BlockGlass;
 import net.minecraft.src.game.block.Material;
 import net.minecraft.src.game.entity.Entity;
 import net.minecraft.src.game.item.ItemStack;
@@ -48,6 +49,8 @@ public class kit extends Mod  implements ClientMod {
                 builder);
         blocks.put(name,b.getRegisteredBlockId());
         blockItems.put(name,b.asRegisteredItem().getRegisteredItemId());
+        System.out.println("block "+name+" ID:"+b.getRegisteredBlockId());
+        System.out.println("block "+name+" item ID:"+b.asRegisteredItem().getRegisteredItemId());
     }
     public void createRenderer(Entity entity, Render renderer){
     }

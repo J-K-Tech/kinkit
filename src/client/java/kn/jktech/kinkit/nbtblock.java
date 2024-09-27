@@ -25,6 +25,7 @@ public class nbtblock extends Block  {
         this.normal=normalBlock;
         this.customrender = true;
         this.teacup=false;
+        this.setLightRenderPass(true);
     }
     public nbtblock(int id, Material material) {
         super(id, material);
@@ -43,5 +44,13 @@ public class nbtblock extends Block  {
         return new tileEntitynbtblock();
 
     }
+    @Override
+    public boolean isOpaqueCube() {
+        return false;
+    }
 
+    @Override
+    protected Block setLightRenderPass(boolean bool) {
+        return super.setLightRenderPass(bool);
+    }
 }

@@ -34,10 +34,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
-import static org.lwjgl.opengl.GL11.GL_FRONT;
-import static org.lwjgl.opengl.GL11.GL_COMPILE;
-import static org.lwjgl.opengl.GL11.GL_SHININESS;
-import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
+import static org.lwjgl.opengl.GL11.*;
 
 /**
  * OBJloader class. Loads in Wavefront .obj file in to the program.
@@ -98,6 +95,40 @@ public class OBJLoader extends Object {
                     GL11.glNormal3f(normals[2].getX(), normals[2].getY(), normals[2].getZ());
                     GL11.glTexCoord2f(texCoords[2].getX(), texCoords[2].getY());
                     GL11.glVertex3f(vertices[2].getX(), vertices[2].getY(), vertices[2].getZ());
+                }
+            }
+        }
+        GL11.glEnd();
+    } public void render(Obj model, float x, float y, float z) {
+        GL11.glMaterialf(GL_FRONT, GL_SHININESS, 120);
+        GL11.glBegin(GL_TRIANGLES);
+        {
+            for (Obj.Face face : model.getFaces()) {
+                Vector3f[] normals = {
+                        model.getNormals().get(face.getNormals()[0] - 1),
+                        model.getNormals().get(face.getNormals()[1] - 1),
+                        model.getNormals().get(face.getNormals()[2] - 1)
+                };
+                Vector2f[] texCoords = {
+                        model.getTextureCoordinates().get(face.getTextureCoords()[0] - 1),
+                        model.getTextureCoordinates().get(face.getTextureCoords()[1] - 1),
+                        model.getTextureCoordinates().get(face.getTextureCoords()[2] - 1)
+                };
+                Vector3f[] vertices = {
+                        model.getVertices().get(face.getVertices()[0] - 1),
+                        model.getVertices().get(face.getVertices()[1] - 1),
+                        model.getVertices().get(face.getVertices()[2] - 1)
+                };
+                {
+                    GL11.glNormal3f(normals[0].getX(), normals[0].getY(), normals[0].getZ());
+                    GL11.glTexCoord2f(texCoords[0].getX(), texCoords[0].getY());
+                    GL11.glVertex3f(vertices[0].getX()+x, vertices[0].getY()+y, vertices[0].getZ()+z+6);
+                    GL11.glNormal3f(normals[1].getX(), normals[1].getY(), normals[1].getZ());
+                    GL11.glTexCoord2f(texCoords[1].getX(), texCoords[1].getY());
+                    GL11.glVertex3f(vertices[1].getX()+x, vertices[1].getY()+y, vertices[1].getZ()+z+6);
+                    GL11.glNormal3f(normals[2].getX(), normals[2].getY(), normals[2].getZ());
+                    GL11.glTexCoord2f(texCoords[2].getX(), texCoords[2].getY());
+                    GL11.glVertex3f(vertices[2].getX()+x, vertices[2].getY()+y, vertices[2].getZ()+z+6);
                 }
             }
         }
